@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}">
     <link rel="icon" href="../static/images/icon.png" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="../static/scripts/3-hbnb.js?{{ cache_id }}"></script>
+    <script type="text/javascript" src="../static/scripts/1-hbnb.js?{{ cache_id }}"></script>
     <title>HBnB</title>
 </head>
 <body>
@@ -42,7 +42,10 @@
                 <div class="popover">
                     <ul>
                         {% for amenity in amenities %}
-                        <li>{{ amenity.name }}</li>
+                        <li>
+                            <input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">
+                            {{ amenity.name }}
+                        </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -59,39 +62,5 @@
     <footer>
         <p>Holberton School</p>
     </footer>
-
-    <script>
-        $(document).ready(function() {
-            $.ajax({
-                url: "http://0.0.0.0:5001/api/v1/places_search/",
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({}),
-                success: function (places) {
-                    for (let place of places) {
-                        $(".places").append(
-                            `<article>
-                                <div class="title_box">
-                                    <h2>${place.name}</h2>
-                                    <div class="price_by_night">$${place.price_by_night}</div>
-                                </div>
-                                <div class="information">
-                                    <div class="max_guest">${place.max_guest} Guest${place.max_guest != 1 ? "s" : ""}</div>
-                                    <div class="number_rooms">${place.number_rooms} Bedroom${place.number_rooms != 1 ? "s" : ""}</div>
-                                    <div class="number_bathrooms">${place.number_bathrooms} Bathroom${place.number_bathrooms != 1 ? "s" : ""}</div>
-                                </div>
-                                <div class="user">
-                                    <b>Owner:</b> ${place.user.first_name} ${place.user.last_name}
-                                </div>
-                                <div class="description">
-                                    ${place.description}
-                                </div>
-                            </article>`
-                        );
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
