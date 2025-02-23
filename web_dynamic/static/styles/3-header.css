@@ -3,9 +3,28 @@ header {
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
+    position: relative;
 }
+
 header .logo {
     background: url("../images/logo.png") no-repeat;
     left: 20px;
     height: 100%;
+}
+
+/* New styles for API status indicator */
+#api_status {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    transform: translateY(-50%);
+}
+
+/* Available status */
+.available {
+    background-color: #ff545f;
 }
